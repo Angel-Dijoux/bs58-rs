@@ -428,7 +428,7 @@ impl<'a, I: AsRef<[u8]>> EncodeBuilder<'a, I> {
 /// are
 fn max_encoded_len(len: usize) -> usize {
     // log_2(256) / log_2(58) ≈ 1.37.  Assume 1.5 for easier calculation.
-    len + (len + 1) / 2
+    len + (len + 1).div_ceil(2)
 }
 
 fn encode_into<'a, I>(input: I, output: &mut [u8], alpha: &Alphabet) -> Result<usize>
